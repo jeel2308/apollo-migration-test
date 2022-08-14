@@ -17,7 +17,7 @@ import { IconContext } from 'react-icons';
 
 /**--internal-- */
 import { compose, getMatchingResults, clearStorage } from '#Utils';
-import { Sidebar, Dropdown } from '#components';
+import { Sidebar, Dropdown, withLoader } from '#components';
 import { getUserFoldersEnhancer } from '#modules/QueryEnhancer';
 
 /**--relative-- */
@@ -208,7 +208,8 @@ const mapStateToProps = (state) => {
 
 export default compose(
   connect(mapStateToProps),
-  getUserFoldersEnhancer({ loadingContainerStyle })
+  getUserFoldersEnhancer({ loadingContainerStyle }),
+  withLoader
 )(Resources);
 
 Resources.displayName = 'Resources';

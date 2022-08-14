@@ -31,7 +31,7 @@ import {
 import { getFolderDetailsQuery } from '#modules/Queries';
 import { getFolderDetailsFromCache } from '#modules/GraphqlHelpers';
 import { FETCH_MORE_LINK, ADD_LINK, MOVE_OR_DELETE_LINK } from '../FolderUtils';
-import { ScrollIntoViewWrapper } from '#components';
+import { ScrollIntoViewWrapper, withLoader } from '#components';
 
 /**--relative-- */
 import classes from './Links.module.scss';
@@ -506,7 +506,7 @@ const mapStateToProps = (state) => {
 
   const showMoveAction = totalFolders > 1;
 
-  return { showMoveAction };
+  return { showMoveAction, folderDetails: {}, isData: true, isLoading: false };
 };
 
 const mapActionCreators = {
@@ -535,7 +535,7 @@ export default compose(
     },
     props: ({
       getFolderDetails,
-      ownProps: { folderId, isCompleted, searchText },
+      ownProps: { folderId, isCompleted, searchText, isLoading, isData },
     }) => {
       const { networkStatus } = getFolderDetails;
 
@@ -551,9 +551,6 @@ export default compose(
         },
         showOptimistic: true,
       });
-
-      const isData = !_isEmpty(folderDetails);
-      const isLoading = _includes([1, 2], networkStatus);
 
       const pageInfo = _get(folderDetails, 'linksV2.pageInfo', {});
       const { endCursor, hasNextPage } = pageInfo;
@@ -603,13 +600,14 @@ export default compose(
       };
 
       return {
-        isData,
-        isLoading,
+        isData: !_isEmpty(folderDetails) && isData,
+        isLoading: _includes([1, 2], networkStatus) || isLoading,
         folderDetails,
         networkStatus,
         hasNextPage,
         fetchMore,
       };
     },
-  })
+  }),
+  withLoader
 )(Links);

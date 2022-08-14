@@ -1,19 +1,18 @@
-/**--external-- */
-import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import { IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
+// import { ApolloClient, createNetworkInterface, IntrospectionFragmentMatcher } from 'react-apollo';
+import { ApolloClient } from 'apollo-client-preset';
+import { createHttpLink } from 'apollo-link-http';
+import { setContext } from 'apollo-link-context';
+import { ApolloLink } from 'apollo-link';
+
+import {
+  InMemoryCache,
+  IntrospectionFragmentMatcher,
+  defaultDataIdFromObject,
+} from 'apollo-cache-inmemory';
+import schema from './schema.json';
 
 /**--relative-- */
 import { getToken } from './Utils';
-import schema from './fragmentTypes.json';
-
-const fragmentMatcher = new IntrospectionFragmentMatcher({
-  introspectionQueryResultData: schema,
-});
-
-const httpLink = createHttpLink({
-  uri: `${process.env.REACT_APP_SERVER_URL}/graphql`,
-});
 
 const authLink = setContext((_, { headers }) => {
   const token = getToken();
@@ -25,41 +24,23 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-const client = new ApolloClient({
-  cache: new InMemoryCache({
-    fragmentMatcher,
-    typePolicies: {
-      Folder: {
-        fields: {
-          links: {
-            merge: (_, incoming) => {
-              return incoming;
-            },
-          },
-        },
-      },
-    },
+const httpLink = createHttpLink({
+  uri: `${process.env.REACT_APP_SERVER_URL}/graphql`,
+});
+
+const cache = new InMemoryCache({
+  //resultCaching: false,
+  fragmentMatcher: new IntrospectionFragmentMatcher({
+    introspectionQueryResultData: schema.data,
   }),
-  defaultOptions: {
-    watchQuery: {
-      /**
-       * This is required to avoid network calls when cache is updated
-       */
-      nextFetchPolicy(lastFetchPolicy) {
-        if (
-          lastFetchPolicy === 'cache-and-network' ||
-          lastFetchPolicy === 'network-only'
-        ) {
-          return 'cache-first';
-        }
-        return lastFetchPolicy;
-      },
-    },
+  dataIdFromObject: (object) => {
+    return defaultDataIdFromObject(object); // fall back to default handling
   },
-  /**
-   * Apollo links will be recalculated for each operation.
-   */
-  link: authLink.concat(httpLink),
+});
+
+const client = new ApolloClient({
+  link: ApolloLink.from([authLink, httpLink]),
+  cache,
 });
 
 export default client;

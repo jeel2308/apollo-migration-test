@@ -3,7 +3,6 @@ import AuthenticationPage from './AuthenticationPage';
 import Modal from './Modal';
 import FullScreenLoader from './FullScreenLoader';
 import ToastMessage from './ToastMessage';
-import withQuery from './withQuery';
 import withTooltip from './withTooltip';
 import withRouter from './withRouter';
 import Sidebar from './Sidebar';
@@ -17,7 +16,6 @@ export {
   AuthenticationPage,
   FullScreenLoader,
   ToastMessage,
-  withQuery,
   withTooltip,
   withRouter,
   Sidebar,

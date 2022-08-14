@@ -5,6 +5,7 @@ import FullScreenLoader from './FullScreenLoader';
 import ToastMessage from './ToastMessage';
 import withTooltip from './withTooltip';
 import withRouter from './withRouter';
+import withLoader from './withLoader';
 import Sidebar from './Sidebar';
 import SegmentControl from './SegmentControl';
 import Dropdown from './Dropdown';
@@ -18,6 +19,7 @@ export {
   ToastMessage,
   withTooltip,
   withRouter,
+  withLoader,
   Sidebar,
   SegmentControl,
   Dropdown,

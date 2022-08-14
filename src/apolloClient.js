@@ -31,7 +31,7 @@ const httpLink = createHttpLink({
 const cache = new InMemoryCache({
   //resultCaching: false,
   fragmentMatcher: new IntrospectionFragmentMatcher({
-    introspectionQueryResultData: schema.data,
+    introspectionQueryResultData: schema,
   }),
   dataIdFromObject: (object) => {
     return defaultDataIdFromObject(object); // fall back to default handling

@@ -19,14 +19,19 @@ export const getUserFoldersEnhancer = (customConfigurations) => {
       };
     },
     props: ({ getUserFoldersQuery }) => {
-      const { networkStatus, data } = getUserFoldersQuery;
-      const isData = !_isEmpty(data);
+      const { networkStatus, node = {} } = getUserFoldersQuery;
+      const isData = !_isEmpty(node);
       const isLoading = _includes([1, 2], networkStatus);
-      const { folders, name } = _get(data, 'node', {});
+      const { folders, name } = node;
       const folderList = _map(folders, ({ id, name }) => ({ id, label: name }));
       const userBasicDetails = { name };
-      return { folders: folderList, isData, isLoading, userBasicDetails };
+      return {
+        folders: folderList,
+        isData,
+        isLoading,
+        userBasicDetails,
+        ...customConfigurations,
+      };
     },
-    ...(customConfigurations ? customConfigurations : {}),
   });
 };

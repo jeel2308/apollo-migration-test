@@ -3,7 +3,7 @@ import _isEmpty from 'lodash/isEmpty';
 import _includes from 'lodash/includes';
 import _get from 'lodash/get';
 import _map from 'lodash/map';
-import { graphql } from 'react-apollo';
+import { graphql } from '@apollo/client/react/hoc';
 
 /**--relative-- */
 import { getUserFoldersQuery } from '#modules/Queries';

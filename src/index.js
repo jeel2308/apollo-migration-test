@@ -3,7 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter } from 'react-router-dom';
-import { ApolloProvider } from 'react-apollo';
+// import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from '@apollo/client';
 import { Provider } from 'react-redux';
 
 /**--relative-- */
@@ -11,12 +12,13 @@ import './index.css';
 import store from './store';
 import App from './App';
 import client from './apolloClient';
+import clientV2 from './apolloClientV2';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ApolloProvider client={client}>
+      <ApolloProvider client={clientV2}>
         <ChakraProvider>
           <BrowserRouter>
             <App />

@@ -11,7 +11,7 @@ import _find from 'lodash/find';
 import _size from 'lodash/size';
 import _pipe from 'lodash/flow';
 import _reverse from 'lodash/reverse';
-import { graphql } from 'react-apollo';
+import { graphql } from '@apollo/client/react/hoc';
 
 /**--internal-- */
 import {

@@ -1,4 +1,5 @@
-import client from '../apolloClient';
+// import client from '../apolloClient';
+import client from '../apolloClientV2';
 import _isEmpty from 'lodash/isEmpty';
 import _get from 'lodash/get';
 import _size from 'lodash/size';

@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "#Utils": "./Utils.js",
+    "#components": "./components",
+    "#modules/*": "./modules/*"
+  }
+}

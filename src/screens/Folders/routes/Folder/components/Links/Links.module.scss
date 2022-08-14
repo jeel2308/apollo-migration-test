@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.scrollContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  background-color: whitesmoke;
+  flex: 1;
+  gap: 48px;
+}
+
+.linkOption {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.linkContainer {
+  display: flex;
+  gap: 20px;
+  max-width: 50%;
+}
+
+.spinnerContainer {
+  display: flex;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+}

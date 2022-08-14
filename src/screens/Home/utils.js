@@ -1,0 +1,9 @@
+const TITLE_FONT_SIZE = '2xl';
+
+const LIST_FONT_SIZE = 'md';
+
+const TITLE_ELEMENT = 'h2';
+
+const LIST_ITEM_ELEMENT = 'h5';
+
+export { TITLE_ELEMENT, LIST_FONT_SIZE, LIST_ITEM_ELEMENT, TITLE_FONT_SIZE };

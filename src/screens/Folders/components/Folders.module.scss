@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  min-width: 748px;
+}
+
+.leftContainer {
+  display: flex;
+  width: 24%;
+  flex-direction: column;
+  background-color: #202632;
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  padding: 16px 24px 16px 16px;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebarContainer {
+  display: flex;
+  width: 100%;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.noMatchText {
+  display: flex;
+  color: white;
+}
+
+.searchContainer {
+  display: flex;
+  padding: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}

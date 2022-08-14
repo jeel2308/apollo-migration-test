@@ -1,0 +1,14 @@
+.DS_STORE
+.DS_Store
+*.log
+
+/node_modules
+**/.vscode/settings.json
+
+dist
+coverage
+.idea
+
+
+# history
+.history/

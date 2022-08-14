@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.error {
+  display: flex;
+  margin-top: 4px;
+  font-size: 16px;
+  height: 24px;
+  margin-left: 4px;
+  color: crimson;
+}

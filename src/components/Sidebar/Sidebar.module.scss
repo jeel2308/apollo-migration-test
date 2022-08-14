@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.option {
+  width: 100%;
+  display: flex;
+  border: unset;
+  flex: 1;
+  align-items: center;
+  padding: 16px 24px 16px 16px;
+  cursor: pointer;
+  &:hover {
+    background-color: #2b313c;
+  }
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.activeOption {
+  border-left: 4px solid #f75961;
+  padding-left: 12px;
+}
+
+.optionLabel {
+  display: block;
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  height: 24px;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.leftContent {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex: 1;
+}

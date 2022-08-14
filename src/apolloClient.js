@@ -9,7 +9,7 @@ import {
   IntrospectionFragmentMatcher,
   defaultDataIdFromObject,
 } from 'apollo-cache-inmemory';
-import schema from './schema.json';
+import schema from './fragmentTypes.json';
 
 /**--relative-- */
 import { getToken } from './Utils';

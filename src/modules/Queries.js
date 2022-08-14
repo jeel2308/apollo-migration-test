@@ -1,5 +1,5 @@
 /**--external-- */
-import { gql } from '@apollo/client';
+import { gql } from 'graphql-tag';
 
 /**--relative-- */
 import { folderFragments } from './Fragments';

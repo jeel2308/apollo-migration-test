@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from 'graphql-tag';
 import { linkFragments, userFragments } from './Fragments';
 
 const addFolderMutation = gql`

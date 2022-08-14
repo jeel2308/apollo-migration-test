@@ -11,9 +11,9 @@ import _find from 'lodash/find';
 import _size from 'lodash/size';
 import _pipe from 'lodash/flow';
 import _reverse from 'lodash/reverse';
+import { graphql } from 'react-apollo';
 
 /**--internal-- */
-import { withQuery } from '#components';
 import {
   deleteLink,
   updateLink,
@@ -516,22 +516,24 @@ const mapActionCreators = {
 
 export default compose(
   connect(mapStateToProps, mapActionCreators),
-  withQuery(getFolderDetailsQuery, {
+  graphql(getFolderDetailsQuery, {
     name: 'getFolderDetails',
-    displayName: 'getFolderDetails',
-    fetchPolicy: 'cache-and-network',
-    getVariables: ({ folderId, isCompleted, searchText }) => {
+    alias: 'getFolderDetails',
+    skip: ({ folderId }) => !folderId,
+    options: ({ folderId, isCompleted, searchText }) => {
       return {
-        input: { id: folderId, type: 'FOLDER' },
-        linkFilterInputV2: {
-          isCompleted,
-          first: DEFAULT_PAGE_SIZE,
-          searchText,
+        fetchPolicy: 'cache-and-network',
+        variables: {
+          input: { id: folderId, type: 'FOLDER' },
+          linkFilterInputV2: {
+            isCompleted,
+            first: DEFAULT_PAGE_SIZE,
+            searchText,
+          },
         },
       };
     },
-    getSkipQueryStatus: ({ folderId }) => !folderId,
-    mapQueryDataToProps: ({
+    props: ({
       getFolderDetails,
       ownProps: { folderId, isCompleted, searchText },
     }) => {
@@ -542,7 +544,11 @@ export default compose(
        */
       const folderDetails = getFolderDetailsFromCache({
         folderId,
-        linkFilters: { isCompleted, first: DEFAULT_PAGE_SIZE, searchText },
+        linkFilters: {
+          isCompleted,
+          first: DEFAULT_PAGE_SIZE,
+          searchText,
+        },
         showOptimistic: true,
       });
 

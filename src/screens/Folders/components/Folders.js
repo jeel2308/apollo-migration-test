@@ -14,9 +14,10 @@ import _size from 'lodash/size';
 import { Avatar, Button } from '@chakra-ui/react';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { IconContext } from 'react-icons';
+import { compose } from 'react-apollo';
 
 /**--internal-- */
-import { compose, getMatchingResults, clearStorage } from '#Utils';
+import { getMatchingResults, clearStorage } from '#Utils';
 import { Sidebar, Dropdown, withLoader } from '#components';
 import { getUserFoldersEnhancer } from '#modules/QueryEnhancer';
 

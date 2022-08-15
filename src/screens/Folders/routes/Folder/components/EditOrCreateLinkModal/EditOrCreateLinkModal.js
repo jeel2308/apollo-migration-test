@@ -4,12 +4,12 @@ import { Button } from '@chakra-ui/react';
 import { connect } from 'react-redux';
 import _isEmpty from 'lodash/isEmpty';
 import _get from 'lodash/get';
+import { compose } from 'react-apollo';
 
 /**--internal-- */
 import { Modal, Form } from '#components';
 import { addLink, updateLink } from '#modules/Module';
 import { getLinkDetailsFromCache } from '#modules/GraphqlHelpers';
-import { compose } from '#Utils';
 import { getUserFoldersEnhancer } from '#modules/QueryEnhancer';
 
 /**--relative */

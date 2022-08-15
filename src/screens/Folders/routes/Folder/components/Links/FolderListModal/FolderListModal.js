@@ -12,10 +12,10 @@ import {
   ButtonGroup,
   Button,
 } from '@chakra-ui/react';
+import { compose } from 'react-apollo';
 
 /**--internal-- */
 import { Modal } from '#components';
-import { compose } from '#Utils';
 import { getUserFoldersEnhancer } from '#modules/QueryEnhancer';
 
 /**--relative-- */

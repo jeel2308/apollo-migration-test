@@ -557,7 +557,7 @@ export default compose(
 
       const fetchMore = async ({ first = DEFAULT_PAGE_SIZE } = {}) => {
         return await getFolderDetails.fetchMore({
-          //BUG: setting query option will not update network status while refetching
+          query: getFolderDetailsQuery,
           variables: {
             input: {
               id: folderId,

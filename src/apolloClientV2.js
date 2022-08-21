@@ -6,6 +6,7 @@ import {
   ApolloLink,
 } from '@apollo/client';
 import { IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
+import { typePolicies } from './typePolicies';
 
 /**--relative-- */
 import { getToken } from './Utils';
@@ -31,6 +32,7 @@ const cache = new InMemoryCache({
   fragmentMatcher: new IntrospectionFragmentMatcher({
     introspectionQueryResultData: schema,
   }),
+  typePolicies,
 });
 
 const client = new ApolloClient({
@@ -38,18 +40,7 @@ const client = new ApolloClient({
   link: concat(authMiddleware, httpLink),
   defaultOptions: {
     watchQuery: {
-      nextFetchPolicy(currentFetchPolicy) {
-        if (
-          currentFetchPolicy === 'network-only' ||
-          currentFetchPolicy === 'cache-and-network'
-        ) {
-          // Demote the network policies (except "no-cache") to "cache-first"
-          // after the first request.
-          return 'cache-first';
-        }
-        // Leave all other fetch policies unchanged.
-        return currentFetchPolicy;
-      },
+      nextFetchPolicy: 'cache-only',
     },
   },
 });

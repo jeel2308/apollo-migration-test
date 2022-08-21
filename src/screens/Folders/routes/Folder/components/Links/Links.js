@@ -557,7 +557,6 @@ export default compose(
 
       const fetchMore = async ({ first = DEFAULT_PAGE_SIZE } = {}) => {
         return await getFolderDetails.fetchMore({
-          query: getFolderDetailsQuery,
           variables: {
             input: {
               id: folderId,
@@ -569,32 +568,6 @@ export default compose(
               after: endCursor,
               searchText,
             },
-          },
-          updateQuery: (previousFeed, { fetchMoreResult }) => {
-            const { node: oldNode } = previousFeed;
-            const { node: newNode } = fetchMoreResult;
-
-            const { linksV2: oldLinksV2 } = oldNode;
-            const { linksV2: newLinksV2 } = newNode;
-
-            const { edges: oldEdges } = oldLinksV2;
-            const { edges: newEdges } = newLinksV2;
-
-            const updatedEdges = [...oldEdges, ...newEdges];
-
-            const { pageInfo: updatedPageInfo } = newLinksV2;
-
-            return {
-              ...previousFeed,
-              node: {
-                ...oldNode,
-                linksV2: {
-                  ...oldLinksV2,
-                  edges: updatedEdges,
-                  pageInfo: updatedPageInfo,
-                },
-              },
-            };
           },
         });
       };

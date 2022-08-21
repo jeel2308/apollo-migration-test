@@ -41,6 +41,7 @@ const client = new ApolloClient({
   defaultOptions: {
     watchQuery: {
       nextFetchPolicy: 'cache-only',
+      notifyOnNetworkStatusChange: true,
     },
   },
 });

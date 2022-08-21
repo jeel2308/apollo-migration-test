@@ -531,7 +531,6 @@ export default compose(
             searchText,
           },
         },
-        notifyOnNetworkStatusChange: true,
       };
     },
     props: ({

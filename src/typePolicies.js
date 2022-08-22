@@ -5,7 +5,10 @@ export const typePolicies = {
         keyArgs: (args) => {
           const { input } = args;
           const variables = Object.keys(input);
-          return variables.filter((variable) => variable !== 'after');
+          return [
+            'input',
+            variables.filter((variable) => variable !== 'after'),
+          ];
         },
         merge: (existing = {}, incoming = {}) => {
           const totalCount = (existing.totalCount || 0) + incoming.totalCount;
